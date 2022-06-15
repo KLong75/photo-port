@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`About component matches snapshot DOM node structure 1`] = `
+exports[`About component renders matches snapshot DOM node structure 1`] = `
 <DocumentFragment>
   <section
     class="my-5"
@@ -16,6 +16,13 @@ exports[`About component matches snapshot DOM node structure 1`] = `
       src="cover-image.jpg"
       style="width: 100%;"
     />
+    <div
+      class="my-2"
+    >
+      <p>
+        about artist information will go here blah blah cool stuff blah bibbiddy blooby blah stuff yep cool rad up and down jump all around stuff blah words blah blah bah photos pictures cool stuff yep blah blah blah
+      </p>
+    </div>
   </section>
 </DocumentFragment>
 `;
