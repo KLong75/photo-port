@@ -1,8 +1,9 @@
 import React from "react";
-import {render, cleanup } from '@testing-library/react';
+import {render, cleanup, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import Modal from '..';
 
+const mockToggleModal = jest.fn();
 const currentPhoto = {
     name: 'Park bench',
     category: 'landscape',
@@ -15,10 +16,28 @@ afterEach(cleanup);
 
 describe ('Modal component', () => {
   it('renders', () => {
-    render(<Modal currentPhoto={currentPhoto}/>)
+    render(<Modal 
+        onClose={mockToggleModal}
+        currentPhoto={currentPhoto}/>)
   });
   it('matches snapshot', () => {
-    const { asFragment } = render(<Modal currentPhoto={currentPhoto} />)
+    const { asFragment } = render(<Modal
+      onClose={mockToggleModal} 
+      currentPhoto={currentPhoto} 
+    />);
     expect(asFragment()).toMatchSnapshot();
+  });
+})
+
+describe('Click Event', () => {
+  it('calls onClose handler', () => {
+    const { getByText } = render(<Modal
+      onClose={mockToggleModal}
+      currentPhoto={currentPhoto}
+    />);
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    fireEvent.click(getByText('Close'))
+
+    expect(mockToggleModal).toHaveBeenCalledTimes(1);
   });
 })
